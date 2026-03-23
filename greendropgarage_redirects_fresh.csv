@@ -1,0 +1,49 @@
+from,to,type,notes
+/business-car-care/,/memberships/,301,Consolidated membership
+/business-truck-suv-care/,/memberships/,301,Consolidated membership
+/business/,/memberships/,301,Consolidated membership
+/central-garage/,/locations/central/,301,Garage page → canonical /locations/{loc}/
+/ev-care/,/memberships/,301,Consolidated membership
+/fleet-care/,/memberships/,301,Consolidated membership
+/gold-memberships/,/memberships/,301,Consolidated membership
+/location/central/auto-repair/,/services/auto-repair/central/,301,Legacy /location/{loc}/{service} → service-first
+/location/central/brakes/,/services/brakes/central/,301,Legacy /location/{loc}/{service} → service-first
+/location/central/diagnostics/,/services/diagnostics/central/,301,Legacy /location/{loc}/{service} → service-first
+/location/central/maintenance/,/services/service-maintenance/central/,301,Legacy /location/{loc}/{service} → service-first
+/location/central/membership/,/memberships/,301,Consolidated membership
+/location/central/oil-change/,/services/oil-changes/central/,301,Legacy /location/{loc}/{service} → service-first
+/location/mlk/auto-repair/,/services/auto-repair/mlk/,301,Legacy /location/{loc}/{service} → service-first
+/location/mlk/brakes/,/services/brakes/mlk/,301,Legacy /location/{loc}/{service} → service-first
+/location/mlk/diagnostics/,/services/diagnostics/mlk/,301,Legacy /location/{loc}/{service} → service-first
+/location/mlk/maintenance/,/services/service-maintenance/mlk/,301,Legacy /location/{loc}/{service} → service-first
+/location/mlk/membership/,/memberships/,301,Consolidated membership
+/location/mlk/oil-change/,/services/oil-changes/mlk/,301,Legacy /location/{loc}/{service} → service-first
+/location/moreland/auto-repair/,/services/auto-repair/moreland/,301,Legacy /location/{loc}/{service} → service-first
+/location/moreland/brakes/,/services/brakes/moreland/,301,Legacy /location/{loc}/{service} → service-first
+/location/moreland/diagnostics/,/services/diagnostics/moreland/,301,Legacy /location/{loc}/{service} → service-first
+/location/moreland/maintenance/,/services/service-maintenance/moreland/,301,Legacy /location/{loc}/{service} → service-first
+/location/moreland/membership/,/memberships/,301,Consolidated membership
+/location/moreland/oil-change/,/services/oil-changes/moreland/,301,Legacy /location/{loc}/{service} → service-first
+/location/st-johns/auto-repair/,/services/auto-repair/st-johns/,301,Legacy /location/{loc}/{service} → service-first
+/location/st-johns/brakes/,/services/brakes/st-johns/,301,Legacy /location/{loc}/{service} → service-first
+/location/st-johns/diagnostics/,/services/diagnostics/st-johns/,301,Legacy /location/{loc}/{service} → service-first
+/location/st-johns/maintenance/,/services/service-maintenance/st-johns/,301,Legacy /location/{loc}/{service} → service-first
+/location/st-johns/membership/,/memberships/,301,Consolidated membership
+/location/st-johns/oil-change/,/services/oil-changes/st-johns/,301,Legacy /location/{loc}/{service} → service-first
+/location/uptown/auto-repair/,/services/auto-repair/uptown/,301,Legacy /location/{loc}/{service} → service-first
+/location/uptown/brakes/,/services/brakes/uptown/,301,Legacy /location/{loc}/{service} → service-first
+/location/uptown/diagnostics/,/services/diagnostics/uptown/,301,Legacy /location/{loc}/{service} → service-first
+/location/uptown/maintenance/,/services/service-maintenance/uptown/,301,Legacy /location/{loc}/{service} → service-first
+/location/uptown/membership/,/memberships/,301,Consolidated membership
+/location/uptown/oil-change/,/services/oil-changes/uptown/,301,Legacy /location/{loc}/{service} → service-first
+/location/vancouver/auto-repair/,/services/auto-repair/vancouver/,301,Legacy /location/{loc}/{service} → service-first
+/location/vancouver/brakes/,/services/brakes/vancouver/,301,Legacy /location/{loc}/{service} → service-first
+/location/vancouver/diagnostics/,/services/diagnostics/vancouver/,301,Legacy /location/{loc}/{service} → service-first
+/location/vancouver/maintenance/,/services/service-maintenance/vancouver/,301,Legacy /location/{loc}/{service} → service-first
+/location/vancouver/membership/,/memberships/,301,Consolidated membership
+/location/vancouver/oil-change/,/services/oil-changes/vancouver/,301,Legacy /location/{loc}/{service} → service-first
+/mlk-garage/,/locations/mlk/,301,Garage page → canonical /locations/{loc}/
+/moreland-garage/,/locations/moreland/,301,Garage page → canonical /locations/{loc}/
+/st-johns-garage/,/locations/st-johns/,301,Garage page → canonical /locations/{loc}/
+/uptown-garage/,/locations/uptown/,301,Garage page → canonical /locations/{loc}/
+/vancouver-garage/,/locations/vancouver/,301,Garage page → canonical /locations/{loc}/

@@ -1,7 +1,28 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { visionTool } from '@sanity/vision'
+import { schemaTypes } from './schemaTypes'
+
+// Custom structure to make Site Settings a singleton
+const myStructure = (S: any) =>
+  S.list()
+    .title('Content')
+    .items([
+      // Our Singleton Site Settings
+      S.listItem()
+        .title('Site Settings')
+        .child(
+          S.document()
+            .schemaType('siteSettings')
+            .documentId('siteSettings')
+            .title('Site Settings')
+        ),
+      S.divider(),
+      // Render all other document types automatically
+      ...S.documentTypeListItems().filter(
+        (listItem: any) => !['siteSettings'].includes(listItem.getId())
+      ),
+    ])
 
 export default defineConfig({
   name: 'default',
@@ -10,7 +31,12 @@ export default defineConfig({
   projectId: 'i2own2jr',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: myStructure
+    }),
+    visionTool()
+  ],
 
   schema: {
     types: schemaTypes,

@@ -1,0 +1,6 @@
+{"_id": "location--central", "_type": "location", "title": "Central", "slug": {"_type": "slug", "current": "central"}}
+{"_id": "location--mlk", "_type": "location", "title": "Mlk", "slug": {"_type": "slug", "current": "mlk"}}
+{"_id": "location--moreland", "_type": "location", "title": "Moreland", "slug": {"_type": "slug", "current": "moreland"}}
+{"_id": "location--st-johns", "_type": "location", "title": "St Johns", "slug": {"_type": "slug", "current": "st-johns"}}
+{"_id": "location--uptown", "_type": "location", "title": "Uptown", "slug": {"_type": "slug", "current": "uptown"}}
+{"_id": "location--vancouver", "_type": "location", "title": "Vancouver", "slug": {"_type": "slug", "current": "vancouver"}}
