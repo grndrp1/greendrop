@@ -108,7 +108,11 @@ export default defineType({
                 { type: 'blockWelcome' },
                 { type: 'blockTrustBanner' },
                 { type: 'blockPerks' },
-                { type: 'blockVehiclesWeService' }
+                { type: 'blockVehiclesWeService' },
+                { type: 'blockWhyChooseUs' },
+                { type: 'blockFaq' },
+                { type: 'blockBlog' },
+                { type: 'blockNearMe' }
             ],
             options: {
                 // Allows dragging to rearrange blocks

@@ -39,5 +39,41 @@ export default defineType({
             title: 'Global Footer Email',
             type: 'string',
         }),
+        defineField({
+            name: 'tagline',
+            title: 'Site Tagline',
+            type: 'string',
+            initialValue: 'Eco-Friendly Auto Maintenance & Repairs in the Pacific Northwest',
+        }),
+        defineField({
+            name: 'copyrightText',
+            title: 'Copyright Text',
+            type: 'string',
+            initialValue: '© 2026 Green Drop Garage. All Rights Reserved',
+        }),
+        defineField({
+            name: 'manageText',
+            title: 'Management Text',
+            type: 'string',
+            initialValue: 'Website managed by Tekmetric',
+        }),
+        defineField({
+            name: 'manageUrl',
+            title: 'Management URL',
+            type: 'url',
+            initialValue: 'https://www.tekmetric.com/',
+        }),
+        defineField({
+            name: 'privacyUrl',
+            title: 'Privacy Policy URL',
+            type: 'string',
+            initialValue: '/privacy-policy',
+        }),
+        defineField({
+            name: 'creditsUrl',
+            title: 'Image Credits URL',
+            type: 'string',
+            initialValue: '/image-credits',
+        }),
     ],
 })

@@ -149,6 +149,27 @@ export default defineType({
             title: 'Canonical URL',
             type: 'url',
         }),
+        // Social Links
+        defineField({
+            name: 'facebookUrl',
+            title: 'Facebook URL',
+            type: 'url',
+        }),
+        defineField({
+            name: 'instagramUrl',
+            title: 'Instagram URL',
+            type: 'url',
+        }),
+        defineField({
+            name: 'linkedinUrl',
+            title: 'LinkedIn URL',
+            type: 'url',
+        }),
+        defineField({
+            name: 'yelpUrl',
+            title: 'Yelp URL',
+            type: 'url',
+        }),
     ],
     preview: {
         select: {

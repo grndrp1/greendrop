@@ -10,12 +10,18 @@ import blockWelcome from './blockWelcome'
 import blockTrustBanner from './blockTrustBanner'
 import blockPerks from './blockPerks'
 import blockVehiclesWeService from './blockVehiclesWeService'
+import blockWhyChooseUs from './blockWhyChooseUs'
+import blockFaq from './blockFaq'
+import post from './post'
+import blockBlog from './blockBlog'
+import blockNearMe from './blockNearMe'
 
 export const schemaTypes = [
     location,
     service,
     serviceLocation,
     page,
+    post,
     siteSettings,
     blockCustomerReviews,
     blockServicesHighlight,
@@ -23,4 +29,8 @@ export const schemaTypes = [
     blockTrustBanner,
     blockPerks,
     blockVehiclesWeService,
+    blockWhyChooseUs,
+    blockFaq,
+    blockBlog,
+    blockNearMe,
 ]
