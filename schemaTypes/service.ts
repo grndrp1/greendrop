@@ -125,6 +125,49 @@ export default defineType({
             title: 'Canonical URL',
             type: 'url',
         }),
+        // ── Dynamic Service Sections ──
+        defineField({
+            name: 'serviceSection1',
+            title: 'Service Section 1 (Badge + Text + Image)',
+            type: 'object',
+            fields: [
+                defineField({ name: 'badge', title: 'Badge', type: 'string', initialValue: 'Services' }),
+                defineField({ name: 'title', title: 'Title', type: 'string' }),
+                defineField({ name: 'content', title: 'Content', type: 'array', of: [{ type: 'block' }] }),
+                defineField({ name: 'ctaText', title: 'Button Text', type: 'string' }),
+                defineField({ name: 'ctaUrl', title: 'Button URL', type: 'string' }),
+                defineField({ name: 'image', title: 'Image', type: 'image', options: { hotspot: true } }),
+            ]
+        }),
+        defineField({
+            name: 'serviceSection2',
+            title: 'Service Section 2 (Title + Text — Dark BG)',
+            type: 'object',
+            fields: [
+                defineField({ name: 'title', title: 'Title', type: 'string' }),
+                defineField({ name: 'content', title: 'Content', type: 'array', of: [{ type: 'block' }] }),
+            ]
+        }),
+        defineField({
+            name: 'serviceSection3',
+            title: 'Service Section 3 (Title + Text + Button)',
+            type: 'object',
+            fields: [
+                defineField({ name: 'title', title: 'Title', type: 'string' }),
+                defineField({ name: 'content', title: 'Content', type: 'array', of: [{ type: 'block' }] }),
+                defineField({ name: 'ctaText', title: 'Button Text', type: 'string' }),
+                defineField({ name: 'ctaUrl', title: 'Button URL', type: 'string' }),
+            ]
+        }),
+        defineField({
+            name: 'serviceSection4',
+            title: 'Service Section 4 (Title + Text)',
+            type: 'object',
+            fields: [
+                defineField({ name: 'title', title: 'Title', type: 'string' }),
+                defineField({ name: 'content', title: 'Content', type: 'array', of: [{ type: 'block' }] }),
+            ]
+        }),
     ],
     preview: {
         select: {

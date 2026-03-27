@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "location--central",
+    "_type": "location",
+    "title": "Green Drop Garage – Central Portland",
+    "slug": { "_type": "slug", "current": "central" },
+    "phone": "(503) 236-7767",
+    "address": { "city": "Portland", "state": "OR", "street": "1417 SE 9th Ave", "zip": "97214" },
+    "hours": [
+      { "_key": "h0", "day": "Monday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h1", "day": "Tuesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h2", "day": "Wednesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h3", "day": "Thursday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h4", "day": "Friday", "open": "8:00am", "close": "5:00pm" }
+    ]
+  },
+  {
+    "_id": "location--moreland",
+    "_type": "location",
+    "title": "Green Drop Garage – Moreland Portland",
+    "slug": { "_type": "slug", "current": "moreland" },
+    "phone": "(503) 567-8344",
+    "address": { "city": "Portland", "state": "OR", "street": "5321 SE 28th Ave", "zip": "97202" },
+    "hours": [
+      { "_key": "h0", "day": "Monday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h1", "day": "Tuesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h2", "day": "Wednesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h3", "day": "Thursday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h4", "day": "Friday", "open": "8:00am", "close": "5:00pm" }
+    ]
+  },
+  {
+    "_id": "location--mlk",
+    "_type": "location",
+    "title": "Green Drop Garage – MLK Portland",
+    "slug": { "_type": "slug", "current": "mlk" },
+    "phone": "(503) 867-8119",
+    "address": { "city": "Portland", "state": "OR", "street": "3007 NE Martin Luther King Jr Blvd", "zip": "97212" },
+    "hours": [
+      { "_key": "h0", "day": "Monday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h1", "day": "Tuesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h2", "day": "Wednesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h3", "day": "Thursday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h4", "day": "Friday", "open": "8:00am", "close": "5:00pm" }
+    ]
+  },
+  {
+    "_id": "location--uptown",
+    "_type": "location",
+    "title": "Green Drop Garage – Uptown Portland",
+    "slug": { "_type": "slug", "current": "uptown" },
+    "phone": "(503) 867-8087",
+    "address": { "city": "Portland", "state": "OR", "street": "50 NW 20th Ave. Suite A", "zip": "97209" },
+    "hours": [
+      { "_key": "h0", "day": "Monday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h1", "day": "Tuesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h2", "day": "Wednesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h3", "day": "Thursday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h4", "day": "Friday", "open": "8:00am", "close": "5:00pm" }
+    ]
+  },
+  {
+    "_id": "location--vancouver",
+    "_type": "location",
+    "title": "Green Drop Garage – Vancouver WA",
+    "slug": { "_type": "slug", "current": "vancouver" },
+    "phone": "(360) 360-3007",
+    "address": { "city": "Vancouver", "state": "WA", "street": "3800 Main St", "zip": "98663" },
+    "hours": [
+      { "_key": "h0", "day": "Monday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h1", "day": "Tuesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h2", "day": "Wednesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h3", "day": "Thursday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h4", "day": "Friday", "open": "8:00am", "close": "5:00pm" }
+    ]
+  },
+  {
+    "_id": "location--st-johns",
+    "_type": "location",
+    "title": "Green Drop Garage – St. Johns Portland",
+    "slug": { "_type": "slug", "current": "st-johns" },
+    "phone": "(503) 487-8487",
+    "address": { "city": "Portland", "state": "OR", "street": "8950 N Lombard St", "zip": "97203" },
+    "hours": [
+      { "_key": "h0", "day": "Monday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h1", "day": "Tuesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h2", "day": "Wednesday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h3", "day": "Thursday", "open": "8:00am", "close": "5:00pm" },
+      { "_key": "h4", "day": "Friday", "open": "8:00am", "close": "5:00pm" }
+    ]
+  }
+]

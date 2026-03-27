@@ -131,6 +131,61 @@ export default defineType({
             type: 'image',
             options: { hotspot: true },
         }),
+        // ── About Section fields ──
+        defineField({
+            name: 'aboutTitle',
+            title: 'About Title',
+            type: 'string',
+            initialValue: 'ABOUT US',
+        }),
+        defineField({
+            name: 'aboutSubheading',
+            title: 'About Subheading',
+            type: 'string',
+        }),
+        defineField({
+            name: 'aboutContent',
+            title: 'About Content',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
+        defineField({
+            name: 'aboutImage',
+            title: 'About Image',
+            type: 'image',
+            options: { hotspot: true },
+        }),
+        defineField({
+            name: 'aboutCtaText',
+            title: 'About CTA Button Text',
+            type: 'string',
+            initialValue: 'Book Your Service',
+        }),
+        defineField({
+            name: 'aboutCtaUrl',
+            title: 'About CTA Button URL',
+            type: 'string',
+            initialValue: '/contact',
+        }),
+        // ── Quick Turnaround Section fields ──
+        defineField({
+            name: 'quickTurnaroundHeading',
+            title: 'Quick Turnaround Heading',
+            type: 'string',
+            initialValue: 'QUICK TURNAROUND',
+        }),
+        defineField({
+            name: 'quickTurnaroundSubheading',
+            title: 'Quick Turnaround Subheading',
+            type: 'string',
+            initialValue: 'Our Values: Driving with Purpose',
+        }),
+        defineField({
+            name: 'quickTurnaroundContent',
+            title: 'Quick Turnaround Content',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
         // SEO
         defineField({
             name: 'seoTitle',
