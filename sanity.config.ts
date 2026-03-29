@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { presentationTool } from 'sanity/presentation'
 import { schemaTypes } from './schemaTypes'
 
 // Custom structure to make Site Settings a singleton
@@ -35,7 +36,15 @@ export default defineConfig({
     structureTool({
       structure: myStructure
     }),
-    visionTool()
+    visionTool(),
+    presentationTool({
+      previewUrl: {
+        origin: 'http://localhost:3000',
+        previewMode: {
+          enable: `/api/draft-mode/enable?secret=${process.env.SANITY_STUDIO_PREVIEW_SECRET}`,
+        },
+      },
+    }),
   ],
 
   schema: {
