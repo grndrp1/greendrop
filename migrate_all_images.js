@@ -1,8 +1,8 @@
 /**
  * migrate_all_images.js
  * 
- * Performs a universal recursive scan of the Sanity dataset document by document
- * to find any remaining Duda CDN URLs and migrate them to internal Sanity Assets.
+ * Performs a universal surgical recursive scan of the Sanity dataset 
+ * using a refined regex to find and replace any Duda CDN URLs (cdn-website.com).
  */
 
 const { createClient } = require('@sanity/client');
@@ -19,18 +19,20 @@ const client = createClient({
   token: process.env.SANITY_API_TOKEN,
 });
 
+// Refined Regex to stop at common CSS/HTML delimiters
+const DUDA_URL_REGEX = /https?:\/\/[a-zA-Z0-9.-]*cdn-website\.com\/[^\s"'>\),!]+/g;
+
 async function uploadAsset(url) {
   try {
-    // Normalize relative URLs
-    let finalUrl = url;
-    if (finalUrl.includes('cdn-website.com') && !finalUrl.startsWith('http')) {
-      finalUrl = 'https://' + finalUrl.replace(/^(\.\.\/)+/, '');
-    }
-
+    // Basic cleanup of the URL
+    const finalUrl = url.trim();
+    
+    console.log(`  Downloading: ${finalUrl}`);
     const response = await axios({
       method: 'GET',
       url: finalUrl,
       responseType: 'arraybuffer',
+      timeout: 10000,
     });
 
     const asset = await client.assets.upload('image', response.data, {
@@ -38,27 +40,33 @@ async function uploadAsset(url) {
       contentType: response.headers['content-type'],
     });
 
-    return asset._id;
+    const assetIdPart = asset._id.replace('image-', '');
+    const ext = assetIdPart.split('-').pop();
+    const coreId = assetIdPart.substring(0, assetIdPart.lastIndexOf('-'));
+    return `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET}/${coreId}.${ext}`;
   } catch (err) {
     console.error(`  ❌ Failed to upload asset from ${url}: ${err.message}`);
     return null;
   }
 }
 
-async function migrateAllImages() {
-  console.log('--- Starting Universal Recursive Image Migration (Batched) ---');
+async function migrateAllImages(targetId = null) {
+  console.log('--- Starting Surgical Universal Image Migration ---');
 
-  // 1. Get all document IDs and types
-  const query = '*[ _type != "sanity.imageAsset" && _type != "sanity.fileAsset" ] { _id, _type }';
+  const query = targetId 
+    ? `*[ _id == "${targetId}" || _id == "drafts.${targetId}" ]` 
+    : '*[ _type != "sanity.imageAsset" && _type != "sanity.fileAsset" ] { _id, _type }';
+  
   const docInfos = await client.fetch(query);
-
-  console.log(`Found ${docInfos.length} documents to scan.`);
+  console.log(`Found ${docInfos.length} document versions to scan.`);
 
   for (let i = 0; i < docInfos.length; i++) {
-    const { _id, _type } = docInfos[i];
+    const docMeta = docInfos[i];
+    const _id = docMeta._id;
+    const _type = docMeta._type;
+
     process.stdout.write(`[${i+1}/${docInfos.length}] Scanning [${_type}] ${_id}... `);
 
-    // 2. Fetch the full document
     const doc = await client.getDocument(_id);
     if (!doc) {
       console.log('Skipped (not found).');
@@ -68,61 +76,56 @@ async function migrateAllImages() {
     let hasChanges = false;
     const patches = {};
 
-    // 3. Helper to recursively find and replace Duda URLs
-    async function scanAndReplace(obj, path = '') {
+    async function recursiveScan(obj, path = '') {
       if (!obj) return;
 
       if (typeof obj === 'string') {
-        if (obj.includes('cdn-website.com')) {
-          console.log(`\n  Found Duda URL at ${path}: ${obj}`);
-          const assetId = await uploadAsset(obj);
-          if (assetId) {
-            // Determine if we should set it as an 'image' object or a 'url' string
-            // For now, if the path contains 'image' (case insensitive), we assume it's an image object
-            const lastSegment = path.split('.').pop().split('[')[0];
-            if (lastSegment.toLowerCase().includes('image')) {
-              patches[path] = {
-                _type: 'image',
-                asset: { _type: 'reference', _ref: assetId }
-              };
-            } else {
-              // Just replace with the new Sanity CDN URL
-              const assetIdPart = assetId.replace('image-', '');
-              const ext = assetIdPart.split('-').pop();
-              const coreId = assetIdPart.substring(0, assetIdPart.lastIndexOf('-'));
-              const newUrl = `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET}/${coreId}.${ext}`;
-              patches[path] = newUrl;
+        const matches = obj.match(DUDA_URL_REGEX);
+        if (matches) {
+          let newString = obj;
+          let docChanged = false;
+          for (const match of matches) {
+            const newUrl = await uploadAsset(match);
+            if (newUrl) {
+              newString = newString.split(match).join(newUrl);
+              docChanged = true;
             }
+          }
+          if (docChanged) {
+            patches[path] = newString;
             hasChanges = true;
           }
         }
       } else if (Array.isArray(obj)) {
         for (let j = 0; j < obj.length; j++) {
-          await scanAndReplace(obj[j], path ? `${path}[${j}]` : `[${j}]`);
+          await recursiveScan(obj[j], path ? `${path}[${j}]` : `[${j}]`);
         }
       } else if (typeof obj === 'object') {
+        if (obj._type === 'image' && obj.asset?._ref) return;
+
         for (const [key, value] of Object.entries(obj)) {
           if (key.startsWith('_')) continue;
-          await scanAndReplace(value, path ? `${path}.${key}` : key);
+          await recursiveScan(value, path ? `${path}.${key}` : key);
         }
       }
     }
 
-    await scanAndReplace(doc);
+    await recursiveScan(doc);
 
     if (hasChanges) {
       try {
         await client.patch(_id).set(patches).commit();
-        console.log(`  ✅ Successfully updated.`);
+        console.log(`  ✅ Successfully updated document.`);
       } catch (err) {
-        console.log(`  ❌ Failed to patch: ${err.message}`);
+        console.log(`  ❌ Failed to patch document: ${err.message}`);
       }
     } else {
-      process.stdout.write('Done.\n');
+      process.stdout.write('Clean.\n');
     }
   }
 
-  console.log('\n--- Universal Migration Completed ---');
+  console.log('\n--- Surgical Migration Completed ---');
 }
 
-migrateAllImages();
+const targetDoc = process.argv[2] || null;
+migrateAllImages(targetDoc);
