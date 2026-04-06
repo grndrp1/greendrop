@@ -19,6 +19,8 @@ import blockBusinessIncluded from './blockBusinessIncluded'
 import blockBusinessConcierge from './blockBusinessConcierge'
 import blockBusinessJoinCTA from './blockBusinessJoinCTA'
 import blockBusinessTerms from './blockBusinessTerms'
+import blockEmploymentForm from './blockEmploymentForm'
+import blockReviewWidget from './blockReviewWidget'
 
 export const schemaTypes = [
     location,
@@ -41,4 +43,6 @@ export const schemaTypes = [
     blockBusinessConcierge,
     blockBusinessJoinCTA,
     blockBusinessTerms,
+    blockEmploymentForm,
+    blockReviewWidget,
 ]

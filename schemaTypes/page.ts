@@ -117,7 +117,9 @@ export default defineType({
                 { type: 'blockBusinessIncluded' },
                 { type: 'blockBusinessConcierge' },
                 { type: 'blockBusinessJoinCTA' },
-                { type: 'blockBusinessTerms' }
+                { type: 'blockBusinessTerms' },
+                { type: 'blockEmploymentForm' },
+                { type: 'blockReviewWidget' }
             ],
             options: {
                 // Allows dragging to rearrange blocks
