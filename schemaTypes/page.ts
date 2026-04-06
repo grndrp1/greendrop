@@ -30,6 +30,7 @@ export default defineType({
                 list: [
                     { title: 'General', value: 'general' },
                     { title: 'Membership', value: 'membership' },
+                    { title: 'Business', value: 'business' },
                     { title: 'About', value: 'about' },
                     { title: 'Contact', value: 'contact' },
                     { title: 'Landing', value: 'landing' },
@@ -112,7 +113,11 @@ export default defineType({
                 { type: 'blockWhyChooseUs' },
                 { type: 'blockFaq' },
                 { type: 'blockBlog' },
-                { type: 'blockNearMe' }
+                { type: 'blockNearMe' },
+                { type: 'blockBusinessIncluded' },
+                { type: 'blockBusinessConcierge' },
+                { type: 'blockBusinessJoinCTA' },
+                { type: 'blockBusinessTerms' }
             ],
             options: {
                 // Allows dragging to rearrange blocks
@@ -161,6 +166,99 @@ export default defineType({
                     },
                 },
             ],
+        }),
+        // Business page specific fields
+        defineField({
+            name: 'businessIntroSubheadline',
+            title: 'Business Intro Subheadline',
+            type: 'string',
+            hidden: ({ document }) => document?.pageType !== 'business',
+        }),
+        defineField({
+            name: 'businessIntroCtaText',
+            title: 'Business Intro CTA Text',
+            type: 'string',
+            hidden: ({ document }) => document?.pageType !== 'business',
+        }),
+        defineField({
+            name: 'businessIntroCtaUrl',
+            title: 'Business Intro CTA URL',
+            type: 'string',
+            hidden: ({ document }) => document?.pageType !== 'business',
+        }),
+        defineField({
+            name: 'businessPerksBannerText',
+            title: 'Business Perks Banner Text',
+            type: 'string',
+            hidden: ({ document }) => document?.pageType !== 'business',
+            description: 'The horizontal purple banner text above the perks grid.',
+        }),
+        defineField({
+            name: 'businessPerksHeadline',
+            title: 'Business Perks Headline',
+            type: 'string',
+            hidden: ({ document }) => document?.pageType !== 'business',
+            description: 'Secondary headline above the perks grid (e.g. WHY BUSINESS OWNERS CHOOSE OUR FLEET SERVICES).',
+        }),
+        defineField({
+            name: 'businessPerks',
+            title: 'Business Perks',
+            type: 'array',
+            hidden: ({ document }) => document?.pageType !== 'business',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        defineField({ name: 'iconName', title: 'Icon Name', type: 'string', description: 'Lucide React icon name (e.g. Crown, Cog, BadgeDollar, RefreshCw)' }),
+                        defineField({ name: 'title', title: 'Perk Title', type: 'string' }),
+                        defineField({ name: 'text', title: 'Perk Text', type: 'text', rows: 3 }),
+                    ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'businessPlans',
+            title: 'Business Pricing Plans',
+            type: 'array',
+            hidden: ({ document }) => document?.pageType !== 'business',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        defineField({ name: 'vehicleIcon', title: 'Vehicle Icon Name', type: 'string', description: 'Lucide React icon name (e.g. Car, Truck, Anchor)' }),
+                        defineField({ name: 'name', title: 'Plan Name', type: 'string' }),
+                        defineField({ name: 'subtitle', title: 'Subtitle Text', type: 'string' }),
+                        defineField({ name: 'priceText', title: 'Price Text (e.g. $27 / Month)', type: 'string' }),
+                        defineField({ name: 'isButton', title: 'Render Price as Button?', type: 'boolean', description: 'If true, renders the price element as a button instead (e.g. Learn More)' }),
+                    ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'businessStep2Headline',
+            title: 'Step 2 Headline',
+            type: 'string',
+            hidden: ({ document }) => document?.pageType !== 'business',
+        }),
+        defineField({
+            name: 'businessStep2Text',
+            title: 'Step 2 Text',
+            type: 'text',
+            rows: 3,
+            hidden: ({ document }) => document?.pageType !== 'business',
+        }),
+        defineField({
+            name: 'businessStep3Headline',
+            title: 'Step 3 Headline',
+            type: 'string',
+            hidden: ({ document }) => document?.pageType !== 'business',
+        }),
+        defineField({
+            name: 'businessStep3Text',
+            title: 'Step 3 Text',
+            type: 'text',
+            rows: 3,
+            hidden: ({ document }) => document?.pageType !== 'business',
         }),
         // SEO
         defineField({

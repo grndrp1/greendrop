@@ -15,6 +15,10 @@ import blockFaq from './blockFaq'
 import post from './post'
 import blockBlog from './blockBlog'
 import blockNearMe from './blockNearMe'
+import blockBusinessIncluded from './blockBusinessIncluded'
+import blockBusinessConcierge from './blockBusinessConcierge'
+import blockBusinessJoinCTA from './blockBusinessJoinCTA'
+import blockBusinessTerms from './blockBusinessTerms'
 
 export const schemaTypes = [
     location,
@@ -33,4 +37,8 @@ export const schemaTypes = [
     blockFaq,
     blockBlog,
     blockNearMe,
+    blockBusinessIncluded,
+    blockBusinessConcierge,
+    blockBusinessJoinCTA,
+    blockBusinessTerms,
 ]
