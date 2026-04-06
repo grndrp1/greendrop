@@ -21,6 +21,9 @@ import blockBusinessJoinCTA from './blockBusinessJoinCTA'
 import blockBusinessTerms from './blockBusinessTerms'
 import blockEmploymentForm from './blockEmploymentForm'
 import blockReviewWidget from './blockReviewWidget'
+import blockHero from './blockHero'
+import blockHtmlEmbed from './blockHtmlEmbed'
+import blockText from './blockText'
 
 export const schemaTypes = [
     location,
@@ -45,4 +48,7 @@ export const schemaTypes = [
     blockBusinessTerms,
     blockEmploymentForm,
     blockReviewWidget,
+    blockHero,
+    blockHtmlEmbed,
+    blockText,
 ]

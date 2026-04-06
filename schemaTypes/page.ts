@@ -119,7 +119,10 @@ export default defineType({
                 { type: 'blockBusinessJoinCTA' },
                 { type: 'blockBusinessTerms' },
                 { type: 'blockEmploymentForm' },
-                { type: 'blockReviewWidget' }
+                { type: 'blockReviewWidget' },
+                { type: 'blockHero' },
+                { type: 'blockHtmlEmbed' },
+                { type: 'blockText' },
             ],
             options: {
                 // Allows dragging to rearrange blocks
