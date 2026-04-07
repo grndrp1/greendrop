@@ -225,6 +225,19 @@ export default defineType({
             title: 'Yelp URL',
             type: 'url',
         }),
+        // ── Block Sections ──
+        defineField({
+            name: 'customerReviews',
+            title: 'Customer Reviews Section',
+            type: 'blockCustomerReviews',
+            description: 'Optionally override the default reviews for this location.',
+        }),
+        defineField({
+            name: 'whyChooseUs',
+            title: 'Why Choose Us Section',
+            type: 'blockWhyChooseUs',
+            description: 'Optionally override the standard values section.',
+        }),
     ],
     preview: {
         select: {

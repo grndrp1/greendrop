@@ -168,6 +168,19 @@ export default defineType({
                 defineField({ name: 'content', title: 'Content', type: 'array', of: [{ type: 'block' }] }),
             ]
         }),
+        // ── Block Sections ──
+        defineField({
+            name: 'customerReviews',
+            title: 'Customer Reviews Section',
+            type: 'blockCustomerReviews',
+            description: 'Optionally override the default reviews for this service.',
+        }),
+        defineField({
+            name: 'perks',
+            title: 'Perks Section',
+            type: 'blockPerks',
+            description: 'Optionally override the default perks (badges) for this service.',
+        }),
     ],
     preview: {
         select: {
