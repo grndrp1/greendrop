@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green Drop Garage — Migration Status Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f4f4;
+            color: #1a1a1a;
+            padding: 40px 20px;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+        }
+
+        /* Header */
+        .header {
+            background: #5E529D;
+            padding: 40px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.12) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .header-inner { position: relative; z-index: 1; }
+        .header-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: #9FCC3B;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: #fff;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        .header-date {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 500;
+        }
+        .accent-bar {
+            width: 60px;
+            height: 4px;
+            background: #9FCC3B;
+            border-radius: 2px;
+            margin: 16px 0 0;
+        }
+
+        /* Body */
+        .body { padding: 48px; }
+
+        /* Section */
+        .section { margin-bottom: 48px; }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #9FCC3B;
+            margin-bottom: 20px;
+        }
+        .section-label .dot {
+            width: 6px; height: 6px;
+            background: #9FCC3B;
+            border-radius: 50%;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .emoji { font-size: 22px; }
+
+        /* Done table */
+        .done-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        .done-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 16px;
+            background: #f8fdf0;
+            border: 1px solid #dff0b3;
+            border-radius: 6px;
+        }
+        .done-check {
+            width: 22px;
+            height: 22px;
+            background: #9FCC3B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .done-check svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .done-item-text strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+        .done-item-text span {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Todo items */
+        .todo-list { display: flex; flex-direction: column; gap: 16px; }
+        .todo-item {
+            border-left: 4px solid #5E529D;
+            padding: 16px 20px;
+            background: #fbfaff;
+            border-radius: 0 6px 6px 0;
+        }
+        .todo-item.urgent { border-left-color: #e55353; background: #fff8f8; }
+        .todo-item.medium { border-left-color: #f0a500; background: #fffbf0; }
+
+        .todo-tag {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .todo-item .todo-tag { background: #ede9ff; color: #5E529D; }
+        .todo-item.urgent .todo-tag { background: #ffe9e9; color: #c0392b; }
+        .todo-item.medium .todo-tag { background: #fff3cd; color: #856404; }
+
+        .todo-item h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .todo-item p {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .todo-item code {
+            background: rgba(0,0,0,0.07);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Summary */
+        .summary-box {
+            background: #5E529D;
+            border-radius: 8px;
+            padding: 32px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .summary-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.08) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .summary-box-inner { position: relative; z-index: 1; }
+        .summary-box h2 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #9FCC3B;
+        }
+        .summary-items { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .summary-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 14px 16px;
+        }
+        .summary-item .num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #9FCC3B;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .summary-item .label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #eee;
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer span { font-size: 12px; color: #aaa; }
+
+        /* Print styles */
+        @media print {
+            body { background: white; padding: 0; }
+            .page { box-shadow: none; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-logo">● Green Drop Garage</div>
+            <h1>Migration Status Report</h1>
+            <div class="header-date">Last Updated: April 6, 2026</div>
+            <div class="accent-bar"></div>
+        </div>
+    </div>
+
+    <div class="body">
+
+        <!-- Done Section -->
+        <div class="section">
+            <div class="section-label"><span class="dot"></span> Completed</div>
+            <h2><span class="emoji">✅</span> What's Done</h2>
+            <div class="done-grid">
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>URL Structure</strong>
+                        <span>Clean routes built: <code>/services/{service}</code>, <code>/locations/{location}</code>, and <code>/services/{service}/{location}</code>.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>301 Redirects</strong>
+                        <span>All legacy <code>/location/*</code> URLs redirect to their new canonical paths.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>Sanity Content Models</strong>
+                        <span>Location, Service, ServiceLocation, and Page schemas are all live in Sanity.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>NDJSON Migration Files</strong>
+                        <span>All data files generated: <code>sanity_locations_enriched.ndjson</code>, <code>sanity_services_enriched.ndjson</code>, and more.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>Home Page</strong>
+                        <span>Fully built and live on the new Next.js site.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>Locations Pages</strong>
+                        <span>All 6 shop locations have pages with their own routes.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>Services Pages</strong>
+                        <span>Service index and service × location detail pages are built.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>Supporting Pages</strong>
+                        <span>Contact, Careers, Reviews, and Warranty pages are all live.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>Blog (now at /posts)</strong>
+                        <span>Migrated and live with a 3-column grid layout. Temporarily at <code>/posts</code> pending URL fix.</span>
+                    </div>
+                </div>
+
+                <div class="done-item">
+                    <div class="done-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg></div>
+                    <div class="done-item-text">
+                        <strong>Memberships (now at /member)</strong>
+                        <span>Migrated from legacy Duda HTML and live. Temporarily at <code>/member</code> pending URL fix.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Still To Do -->
+        <div class="section">
+            <div class="section-label"><span class="dot"></span> Outstanding</div>
+            <h2><span class="emoji">⚠️</span> Still Needs Attention</h2>
+            <div class="todo-list">
+
+                <div class="todo-item urgent">
+                    <div class="todo-tag">Urgent</div>
+                    <h3>Restore /blog and /memberships as canonical URLs</h3>
+                    <p>These pages were temporarily renamed to <code>/posts</code> and <code>/member</code> to work around a routing conflict. The real fix is to delete the Sanity <code>page</code> documents with those slugs, so the Next.js static routes can take over correctly. This is important for SEO.</p>
+                </div>
+
+                <div class="todo-item urgent">
+                    <div class="todo-tag">Urgent</div>
+                    <h3>Add redirects for renamed routes</h3>
+                    <p>Until the canonical URLs are restored, <code>/blog</code> and <code>/memberships</code> are currently 404ing. Add temporary 301 redirects in <code>next.config.mjs</code> pointing <code>/blog → /posts</code> and <code>/memberships → /member</code> so no traffic is lost.</p>
+                </div>
+
+                <div class="todo-item medium">
+                    <div class="todo-tag">Important</div>
+                    <h3>Verify Sanity content is published</h3>
+                    <p>The NDJSON files were generated and imported, but confirm in Sanity Studio that all 6 locations, 8 services, and ~48 service × location documents are published (not just saved as drafts).</p>
+                </div>
+
+                <div class="todo-item medium">
+                    <div class="todo-tag">Important</div>
+                    <h3>Service × Location page content quality</h3>
+                    <p>The route <code>/services/{service}/{location}/</code> exists but each page should have unique, location-specific copy. Generic or duplicated content across these pages will hurt SEO rankings.</p>
+                </div>
+
+                <div class="todo-item">
+                    <div class="todo-tag">Minor</div>
+                    <h3>Loaner Cars — replace the form placeholder</h3>
+                    <p>The Loaner Cars page currently shows a <code>[ FORM WILL APPEAR HERE ]</code> placeholder. The actual form embed HTML needs to be pasted into the Sanity entry for this page.</p>
+                </div>
+
+                <div class="todo-item">
+                    <div class="todo-tag">Minor</div>
+                    <h3>Reviews page — St. Johns widget ID</h3>
+                    <p>The Elfsight review widget for the St. Johns location is using an incorrect or placeholder <code>widgetId</code> in Sanity. Update it with the correct Elfsight embed ID.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+            <div class="summary-box">
+                <div class="summary-box-inner">
+                    <h2>The Big Picture</h2>
+                    <div class="summary-items">
+                        <div class="summary-item">
+                            <div class="num">~85%</div>
+                            <div class="label">Migration complete — foundation is solid</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="num">2</div>
+                            <div class="label">Urgent URL issues to fix</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="num">2</div>
+                            <div class="label">Content quality items to verify</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="num">2</div>
+                            <div class="label">Minor embed/widget tasks remaining</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <span>Green Drop Garage — Sanity Migration Project</span>
+        <span>Generated April 6, 2026</span>
+    </div>
+
+</div>
+</body>
+</html>

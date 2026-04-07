@@ -39,7 +39,7 @@ export default defineConfig({
     visionTool(),
     presentationTool({
       previewUrl: {
-        origin: 'http://localhost:3000',
+        origin: 'https://greendrop-web.vercel.app',
         previewMode: {
           enable: `/api/draft-mode/enable?secret=${process.env.SANITY_STUDIO_PREVIEW_SECRET}`,
         },
