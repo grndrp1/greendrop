@@ -24,6 +24,7 @@ import blockReviewWidget from './blockReviewWidget'
 import blockHero from './blockHero'
 import blockHtmlEmbed from './blockHtmlEmbed'
 import blockText from './blockText'
+import headerNav from './headerNav'
 
 export const schemaTypes = [
     location,
@@ -32,6 +33,7 @@ export const schemaTypes = [
     page,
     post,
     siteSettings,
+    headerNav,
     blockCustomerReviews,
     blockServicesHighlight,
     blockWelcome,
