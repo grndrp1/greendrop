@@ -63,12 +63,6 @@ export default defineType({
             of: [{ type: 'block' }],
         }),
         defineField({
-            name: 'rawHtml',
-            title: 'Raw HTML Content',
-            type: 'text',
-            description: 'The raw extracted HTML from the live site.',
-        }),
-        defineField({
             name: 'image',
             title: 'Service Image',
             type: 'image',
