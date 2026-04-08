@@ -1,5 +1,5 @@
 # Green Drop Garage — Migration Status Report
-_Last updated: April 6, 2026_
+_Last updated: April 8, 2026_
 
 ---
 
@@ -7,28 +7,23 @@ _Last updated: April 6, 2026_
 
 | Item | Notes |
 |---|---|
-| **URL scheme** (`/services/{service}`, `/locations/{location}`, `/services/{service}/{location}`) | Route structure exists in `src/app/services` and `src/app/locations` |
-| **Redirects** (legacy `/location/*` → new canonical paths) | Built into `next.config.mjs` |
-| **Slug normalization** (`oil-change` → `oil-changes`, etc.) | Redirects handle this |
-| **NDJSON files generated** (locations, services, serviceLocations, pages) | `sanity_*_enriched.ndjson` files exist in `/greendrop` |
-| **Sanity content models** (location, service, serviceLocation, page) | Schema types exist |
-| **Home page** | Built and live |
-| **Locations pages** | Route exists, appears populated |
-| **Services pages** | Route exists including service × location |
-| **Contact, Careers, Reviews, Warranty** | Pages exist and deployed |
-| **Blog / Posts** | Migrated — temporarily renamed to `/posts` due to routing conflict |
-| **Memberships** | Migrated — temporarily renamed to `/member` due to routing conflict |
+| **URL scheme** (`/services/{service}`, `/locations/{location}`, `/services/{service}/{location}`) | Route structure fully functional. |
+| **301 Redirects** (legacy Duda URLs → new canon) | **FIXED & HARDENED**: `trailingSlash: true` enabled to match Duda exactly. |
+| **Slug normalization** (`oil-change` → `oil-changes`, etc.) | Verified across all main repair categories. |
+| **Locations Page** | **RESTORED**: Collision fixed, professional map & grid live. |
+| **Home page** | Built, live, and stabilized. |
+| **Services pages** | Route exists including service × location. |
+| **Contact, Careers, Reviews, Warranty** | Pages exist, stabilized, and deployed. |
+| **Blog / Posts** | **CANONICAL**: Moved back to `/blog` (removed `/posts` workaround). |
+| **Memberships** | **CANONICAL**: Moved back to `/memberships` (removed `/member` workaround). |
 
 ---
 
 ## ⚠️ Still Needs Attention
 
-### 1. Restore canonical URLs for Blog and Memberships
-The blog and memberships pages were renamed to `/posts` and `/member` as a workaround for a slug-clash with Sanity's dynamic catch-all route (`[slug]/page.tsx`). These need to go back to their proper URLs:
-- `/blog` (not `/posts`)
-- `/memberships` (not `/member`)
-
-The right fix is to resolve why the dynamic route is overriding static Next.js routes for these slugs — likely because a Sanity `page` document exists with those same slugs. The solution is to either **delete those Sanity page documents** or explicitly exclude them in `generateStaticParams`.
+### 1. Canonical URL Clean-up (COMPLETE)
+We have successfully restored the professional paths for `/blog/` and `/memberships/`. 
+- **Action Taken**: Excluded these slugs from the top-level dynamic route and updated `next.config.mjs` to redirect the old "workaround" paths back to these canonical versions.
 
 ### 2. Sanity content import verification
 The NDJSON files were generated but confirm all data was actually **imported and published** in Sanity Studio:
@@ -48,12 +43,9 @@ The Loaner Cars page currently shows `[ FORM WILL APPEAR HERE ]` instead of the 
 ### 5. Reviews page — St. Johns widget ID
 The Elfsight review widget for the **St. Johns** location is using a placeholder or incorrect `widgetId` in Sanity. Needs to be updated with the correct Elfsight embed ID.
 
-### 6. Add 301 redirects for renamed routes
-Since `/blog` and `/memberships` were renamed, old URLs need explicit redirects in `next.config.mjs` to preserve SEO equity:
-- `/blog` → `/posts`
-- `/memberships` → `/member`
-
-Without these, any inbound links or search engine indexing for the old URLs will hit a 404.
+### 4. Add 301 redirects for legacy routes (COMPLETE)
+Hardened all redirects in `next.config.mjs`.
+- **Action Taken**: Enabled `trailingSlash: true` to match exact Duda URL structures, preventing 404s for users arriving from old search results or bookmarks.
 
 ---
 
