@@ -40,6 +40,29 @@ export default defineType({
             type: 'string',
         }),
         defineField({
+            name: 'defaultReviewsImage',
+            title: 'Master Review Image',
+            type: 'image',
+            description: 'The image (e.g. shop dog) shown next to reviews when using defaults.',
+            options: { hotspot: true },
+        }),
+        defineField({
+            name: 'defaultReviews',
+            title: 'Master Reviews List',
+            type: 'array',
+            description: 'The default reviews seen across the entire site.',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        defineField({ name: 'author', title: 'Author Name', type: 'string' }),
+                        defineField({ name: 'text', title: 'Review Text', type: 'text' }),
+                        defineField({ name: 'stars', title: 'Stars', type: 'number', initialValue: 5 }),
+                    ]
+                }
+            ],
+        }),
+        defineField({
             name: 'tagline',
             title: 'Site Tagline',
             type: 'string',

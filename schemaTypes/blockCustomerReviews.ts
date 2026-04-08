@@ -30,9 +30,17 @@ export default defineType({
             options: { hotspot: true },
         }),
         defineField({
+            name: 'useDefaults',
+            title: 'Use Default Reviews?',
+            type: 'boolean',
+            description: 'If checked, this section will pull reviews from Global Site Settings.',
+            initialValue: true,
+        }),
+        defineField({
             name: 'reviews',
             title: 'Review Items',
             type: 'array',
+            description: 'Provide custom reviews for this page. (Will be ignored if "Use Default Reviews" is checked above).',
             of: [
                 {
                     type: 'object',
