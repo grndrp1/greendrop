@@ -15,7 +15,7 @@ _Last updated: April 8, 2026_
 | **Services pages** | Route exists including service × location. |
 | **Contact, Careers, Reviews, Warranty** | Pages exist, stabilized, and deployed. |
 | **Blog / Posts** | **CANONICAL**: Moved back to `/blog` (removed `/posts` workaround). |
-| **Memberships** | **CANONICAL**: Moved back to `/memberships` (removed `/member` workaround). |
+| **Production Deployment** | **COMPLETE**: Hardened config and Locations restoration live. |
 
 ---
 

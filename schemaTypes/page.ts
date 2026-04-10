@@ -113,6 +113,7 @@ export default defineType({
                 { type: 'blockBusinessJoinCTA' },
                 { type: 'blockBusinessTerms' },
                 { type: 'blockEmploymentForm' },
+                { type: 'blockContactForm' },
                 { type: 'blockReviewWidget' },
                 { type: 'blockHero' },
                 { type: 'blockHtmlEmbed' },

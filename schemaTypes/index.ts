@@ -20,6 +20,7 @@ import blockBusinessConcierge from './blockBusinessConcierge'
 import blockBusinessJoinCTA from './blockBusinessJoinCTA'
 import blockBusinessTerms from './blockBusinessTerms'
 import blockEmploymentForm from './blockEmploymentForm'
+import blockContactForm from './blockContactForm'
 import blockReviewWidget from './blockReviewWidget'
 import blockHero from './blockHero'
 import blockHtmlEmbed from './blockHtmlEmbed'
@@ -49,6 +50,7 @@ export const schemaTypes = [
     blockBusinessJoinCTA,
     blockBusinessTerms,
     blockEmploymentForm,
+    blockContactForm,
     blockReviewWidget,
     blockHero,
     blockHtmlEmbed,
