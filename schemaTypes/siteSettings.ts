@@ -105,5 +105,12 @@ export default defineType({
       of: [{type: 'whyUsBullet'}],
       validation: (Rule) => Rule.required().length(3),
     }),
+    defineField({
+      name: 'aggregateRating',
+      title: 'Brand Aggregate Rating (fallback for any page without its own rating)',
+      type: 'aggregateRating',
+      description:
+        'Brand-wide rating shown on homepage and any page whose location.aggregateRating is unset.',
+    }),
   ],
 })

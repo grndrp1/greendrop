@@ -28,6 +28,7 @@ import blockText from './blockText'
 import headerNav from './headerNav'
 import whyUsBullet from './objects/whyUsBullet'
 import faqItem from './objects/faqItem'
+import aggregateRating from './objects/aggregateRating'
 
 export const schemaTypes = [
   location,
@@ -59,4 +60,5 @@ export const schemaTypes = [
   blockText,
   whyUsBullet,
   faqItem,
+  aggregateRating,
 ]
