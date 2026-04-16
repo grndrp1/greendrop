@@ -184,10 +184,10 @@ export default defineType({
     }),
     defineField({
       name: 'sharedFaqs',
-      title: 'Shared FAQs (2 items — reused across all locations of this service)',
+      title: 'Shared FAQs (reused across all locations of this service)',
       type: 'array',
       of: [{type: 'faqItem'}],
-      validation: (Rule) => Rule.required().length(2),
+      validation: (Rule) => Rule.required().min(2),
     }),
   ],
   preview: {
