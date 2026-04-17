@@ -46,7 +46,7 @@ export default defineType({
       name: 'heroValueProp',
       title: 'Hero value prop (1 line)',
       type: 'string',
-      validation: (Rule) => Rule.required().max(120),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'neighborhoodsServed',
@@ -86,7 +86,7 @@ export default defineType({
       title: 'Bullet points (5–7)',
       type: 'array',
       of: [{type: 'string'}],
-      validation: (Rule) => Rule.max(7),
+      
     }),
     defineField({
       name: 'image',
