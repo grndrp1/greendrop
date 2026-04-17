@@ -53,7 +53,7 @@ export default defineType({
       title: 'Neighborhoods served (chips, min 3)',
       type: 'array',
       of: [{type: 'string'}],
-      validation: (Rule) => Rule.required().min(3).max(6),
+      validation: (Rule) => Rule.required().min(3),
     }),
     // Localised content
     defineField({
