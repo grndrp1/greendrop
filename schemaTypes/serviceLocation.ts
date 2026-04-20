@@ -50,10 +50,11 @@ export default defineType({
     }),
     defineField({
       name: 'neighborhoodsServed',
-      title: 'Neighborhoods served (chips, min 3)',
+      title: 'Neighborhoods served (override — leave empty to inherit from location)',
+      description:
+        'Per-service override. Leave empty to use the location-level list (recommended). Only fill this in if this specific service at this shop genuinely serves a different set of neighborhoods than the shop as a whole.',
       type: 'array',
       of: [{type: 'string'}],
-      validation: (Rule) => Rule.required().min(3),
     }),
     // Localised content
     defineField({
@@ -86,7 +87,6 @@ export default defineType({
       title: 'Bullet points (5–7)',
       type: 'array',
       of: [{type: 'string'}],
-      
     }),
     defineField({
       name: 'image',
