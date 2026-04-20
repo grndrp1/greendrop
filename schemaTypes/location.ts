@@ -86,6 +86,14 @@ export default defineType({
       type: 'text',
       rows: 4,
     }),
+    defineField({
+      name: 'neighborhoodsServed',
+      title: 'Neighborhoods served',
+      description:
+        'List of neighborhoods this shop serves. Inherited by all service×location pages for this shop unless overridden on a specific serviceLocation doc.',
+      type: 'array',
+      of: [{type: 'string'}],
+    }),
     // ── Hero Section fields ──
     defineField({
       name: 'heroImageUrl',
