@@ -112,5 +112,52 @@ export default defineType({
       description:
         'Brand-wide rating shown on homepage and any page whose location.aggregateRating is unset.',
     }),
+    defineField({
+      name: 'bookingConfirmation',
+      title: 'Booking Confirmation — Cross-Sell Card',
+      type: 'object',
+      description:
+        'Optional promotional card shown on the final step of the public booking wizard. Toggle off to render the confirmation screen exactly as it was before.',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({
+          name: 'enabled',
+          title: 'Show cross-sell card',
+          type: 'boolean',
+          description: 'Master toggle. When off, the confirmation screen renders as standard.',
+          initialValue: false,
+        }),
+        defineField({
+          name: 'headline',
+          title: 'Headline',
+          type: 'string',
+          description: 'e.g. "Become a member today"',
+          validation: (Rule) => Rule.max(80),
+        }),
+        defineField({
+          name: 'body',
+          title: 'Body',
+          type: 'text',
+          rows: 3,
+          description:
+            'Short pitch — 1–2 sentences. e.g. "Get a $100 shop credit when you sign up for an annual membership."',
+          validation: (Rule) => Rule.max(240),
+        }),
+        defineField({
+          name: 'ctaLabel',
+          title: 'Button label',
+          type: 'string',
+          description: 'e.g. "View membership plans"',
+          validation: (Rule) => Rule.max(40),
+        }),
+        defineField({
+          name: 'ctaUrl',
+          title: 'Button URL',
+          type: 'url',
+          description: 'e.g. /memberships?ref=samc&offer=new-member',
+          validation: (Rule) => Rule.uri({allowRelative: true, scheme: ['http', 'https']}),
+        }),
+      ],
+    }),
   ],
 })
